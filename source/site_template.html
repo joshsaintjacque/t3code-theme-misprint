@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Misprint · a theme for T3 Code</title>
+<meta name="description" content="A two-ink print theme for T3 Code: fluoro pink and teal on cream stock. The inks slip out of register while your agent works and snap back when it stops.">
+<meta name="theme-color" content="#f5eddb">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Misprint · a theme for T3 Code">
+<meta property="og:description" content="Two inks on cream stock. They slip out of register while your agent works and snap back when it stops.">
+<meta property="og:url" content="__SITE__">
+<meta property="og:image" content="__SITE__assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Misprint · a theme for T3 Code">
+<meta name="twitter:description" content="Two inks on cream stock. They slip out of register while your agent works and snap back when it stops.">
+<meta name="twitter:image" content="__SITE__assets/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23f5eddb'/%3E%3Ccircle cx='13' cy='15' r='8' fill='%23ff2e88'/%3E%3Ccircle cx='19' cy='17' r='8' fill='%2300a99d' fill-opacity='.9'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=DM+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap" rel="stylesheet">
+<style>
+@property --jx{syntax:'<number>';inherits:false;initial-value:0}
+@property --jy{syntax:'<number>';inherits:false;initial-value:0}
+@property --amt{syntax:'<length>';inherits:false;initial-value:0px}
+:root{
+  --cream:#f5eddb; --side:#efe4ca; --paper:#fffaf0; --line:#d5c8a5;
+  --ink:#141a45; --muted:#5a4a72; --pink:#ff2e88; --pink-deep:#c4005f; --teal:#00a99d; --teal-deep:#007a73;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .15 0 0 0 0 .1 0 0 0 0 .25 0 0 0 1.5 -.62'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+  --disp:"Archivo","Arial Narrow",system-ui,sans-serif; --serif:"Newsreader","Iowan Old Style",Georgia,serif; --mono:"DM Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--grain),var(--cream);color:var(--ink);font:400 clamp(17px,1.1vw + 12px,20px)/1.55 var(--serif);overflow-x:hidden}
+::selection{background:#ffa3c9}
+a{color:var(--teal-deep);text-decoration-color:var(--pink);text-decoration-thickness:2px;text-underline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.mono{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase}
+
+/* the press clock, shared by every slipping thing on the page */
+@keyframes jit{0%,6%{--jx:0;--jy:0}8%,22%{--jx:1;--jy:-.55}24%,38%{--jx:-.6;--jy:.9}40%,52%{--jx:.35;--jy:.25}54%,70%{--jx:-1;--jy:-.7}72%,86%{--jx:.7;--jy:.6}88%,100%{--jx:0;--jy:0}}
+@keyframes march{to{background-position:16px 100%,-16px 100%}}
+@keyframes snapin{0%{--amt:18px}100%{--amt:0px}}
+.slip{--amt:0px;animation:jit 3s ease-out infinite paused;transition:--amt .6s cubic-bezier(.2,1.9,.35,1)}
+.slip.p{transform:translate(calc(var(--jx)*var(--amt)),calc(var(--jy)*var(--amt)))}
+.slip.t{transform:translate(calc(var(--jx)*var(--amt)*-1),calc(var(--jy)*var(--amt)*-1))}
+body.press .slip{--amt:10px;animation-play-state:running;transition:--amt .25s ease-out}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:16px}
+.top .mark{font:800 18px/1 var(--disp);font-stretch:112%;letter-spacing:.06em;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:10px}
+.dot2{position:relative;width:26px;height:20px;display:inline-block}
+.dot2 i{position:absolute;width:16px;height:16px;border-radius:50%;top:2px;mix-blend-mode:multiply}
+.dot2 i:first-child{left:0;background:var(--pink)}.dot2 i:last-child{left:8px;background:var(--teal)}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav a{font:500 12.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink);padding:7px 10px;border-radius:2px;background-image:linear-gradient(var(--pink),var(--pink)),linear-gradient(var(--teal),var(--teal));background-repeat:no-repeat;background-size:0 2px,0 2px;background-position:left bottom,right bottom;transition:background-size .35s}
+nav a:hover{background-size:60% 2px,60% 2px}
+
+/* hero */
+.hero{padding:24px 0 48px;position:relative}
+.eyebrow{color:var(--muted);margin:0 0 6px}
+.wm{position:relative;font:900 clamp(48px,12.6vw,150px)/.86 var(--disp);font-stretch:125%;letter-spacing:-.03em;text-transform:uppercase;margin:0;user-select:none;white-space:nowrap}
+.wm span{display:block;mix-blend-mode:multiply}
+.wm .p{color:var(--pink)}
+.wm .t{color:var(--teal);position:absolute;left:0;top:0}
+.wm:hover .slip{--amt:10px;animation-play-state:running}
+.snap .wm .slip{animation:jit 3s ease-out infinite paused}
+.lede{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;margin-top:30px;align-items:end}
+h1{font:800 clamp(30px,4.2vw,54px)/1.02 var(--disp);font-stretch:100%;letter-spacing:-.02em;margin:0}
+h1 em{font-style:normal;background:linear-gradient(var(--pink),var(--pink)) 0 92%/100% .22em no-repeat}
+.lede p{margin:0 0 18px;max-width:34em}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:13px 18px;border:2px solid var(--ink);border-radius:3px;color:var(--ink);background:var(--paper);box-shadow:4px 4px 0 var(--teal);transition:transform .15s,box-shadow .15s;cursor:pointer;display:inline-flex;gap:10px;align-items:center}
+.btn.primary{background:var(--pink)}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--teal)}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--teal)}
+.btn:focus-visible,a:focus-visible,button:focus-visible,tr:focus-visible{outline:3px solid #00877f;outline-offset:3px}
+
+.proof{position:relative;margin:56px 0 0;padding:14px;background:var(--paper);border:2px solid var(--ink);box-shadow:10px 10px 0 var(--pink),-10px -10px 0 var(--teal);}
+.proof video,.proof img{display:block;width:100%;height:auto;border:1px solid var(--line)}
+.crop{position:absolute;width:26px;height:26px;pointer-events:none}
+.crop:before,.crop:after{content:"";position:absolute;background:var(--ink)}
+.crop:before{width:26px;height:1.5px;top:12px}.crop:after{height:26px;width:1.5px;left:12px}
+.c1{left:-46px;top:-46px}.c2{right:-46px;top:-46px}.c3{left:-46px;bottom:-46px}.c4{right:-46px;bottom:-46px}
+.cap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:12px;color:var(--muted)}
+.cap b{color:var(--pink-deep);font-weight:500}
+
+/* sections */
+section{padding:84px 0 0}
+h2{font:900 clamp(34px,5.4vw,66px)/.95 var(--disp);font-stretch:112%;text-transform:uppercase;letter-spacing:-.02em;margin:0 0 14px}
+h2 span{color:var(--pink);mix-blend-mode:multiply}h2 span+span{color:var(--teal);margin-left:-.05em}
+.sub{max-width:40em;color:var(--muted);margin:0 0 34px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--paper);border:2px solid var(--ink);border-radius:3px;padding:20px 20px 22px;box-shadow:5px 5px 0 var(--teal);position:relative}
+.card:nth-child(even){box-shadow:5px 5px 0 var(--pink)}
+.card .n{font:500 12px var(--mono);letter-spacing:.14em;color:var(--pink-deep)}
+.card h3{font:800 21px/1.1 var(--disp);font-stretch:100%;text-transform:uppercase;letter-spacing:.01em;margin:6px 0 8px}
+.card p{margin:0;font-size:16.5px;line-height:1.5;color:#3b2d57}
+.card .mini{height:34px;margin-bottom:12px;background:repeating-linear-gradient(90deg,var(--pink) 0 8px,transparent 8px 16px),repeating-linear-gradient(90deg,var(--teal) 0 8px,transparent 8px 16px);background-size:16px 4px,16px 4px;background-repeat:repeat-x;background-position:0 50%,0 50%;background-blend-mode:multiply}
+.card .mini.m2{background:linear-gradient(var(--pink),var(--pink)) 0 0/100% 3px no-repeat,linear-gradient(var(--teal),var(--teal)) 0 100%/100% 3px no-repeat;background-blend-mode:normal}
+.card .mini.m3{background:radial-gradient(circle,var(--pink) 0 2.4px,transparent 3px) 0 0/10px 10px,radial-gradient(circle,var(--teal) 0 2.4px,transparent 3px) 5px 5px/10px 10px;background-blend-mode:multiply}
+body.press .card .mini:not(.m2):not(.m3){animation:march 1.5s steps(6) infinite}
+
+/* the press toy */
+.pressbox{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;margin-top:8px}
+.stage{position:relative;aspect-ratio:600/620;max-height:560px;background:var(--grain),var(--cream);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);overflow:hidden;isolation:isolate}
+.stage .pl{position:absolute;inset:6% 4%;background-repeat:no-repeat;background-size:contain;background-position:center;mix-blend-mode:multiply;will-change:transform}
+.stage .pl.a1{background-image:url(assets/svg/left-pink.svg);inset:3% 52% 3% 3%}
+.stage .pl.a2{background-image:url(assets/svg/left-teal.svg);inset:3% 52% 3% 3%}
+.stage .pl.b1{background-image:url(assets/svg/right-pink.svg);inset:3% 3% 3% 52%}
+.stage .pl.b2{background-image:url(assets/svg/right-teal.svg);inset:3% 3% 3% 52%}
+.ctl{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.state{font:500 13px var(--mono);letter-spacing:.14em;text-transform:uppercase;display:flex;gap:10px;align-items:center}
+.lamp{width:12px;height:12px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 2px var(--ink)}
+body.press .lamp{background:var(--pink)}
+.ctl p{margin:0;max-width:26em;color:#3b2d57}
+
+/* media */
+.vidwrap{background:var(--paper);border:2px solid var(--ink);padding:12px;box-shadow:8px 8px 0 var(--teal)}
+.vidwrap video{display:block;width:100%;height:auto}
+
+/* palette */
+.tbl{width:100%;border-collapse:collapse;background:var(--paper);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--pink)}
+.tbl td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl tr{cursor:pointer;transition:background .15s}
+.tbl tr:hover{background:#ffe9f2}
+.tbl tr:last-child td{border-bottom:0}
+.sw{width:56px}.sw i{display:block;width:44px;height:26px;border:1.5px solid var(--ink);border-radius:2px}
+.role{font:500 14px var(--mono);letter-spacing:.04em}
+.use{color:var(--muted);font-size:16px}
+.hex{font:500 14px var(--mono);text-align:right;white-space:nowrap}
+.hint{color:var(--muted);margin:12px 0 0;font-size:15px}
+
+/* install */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.steps .card{box-shadow:5px 5px 0 var(--pink)}
+.steps .card:nth-child(2){box-shadow:5px 5px 0 var(--teal)}
+pre{margin:14px 0 0;background:var(--ink);color:#fbf1e1;padding:14px 16px;border-radius:3px;font:400 13px/1.55 var(--mono);overflow-x:auto;white-space:pre-wrap;word-break:break-all;box-shadow:4px 4px 0 var(--pink)}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,30px);opacity:0;background:var(--ink);color:var(--paper);font:500 13px var(--mono);letter-spacing:.1em;padding:11px 16px;border-radius:3px;box-shadow:4px 4px 0 var(--pink);transition:.3s;z-index:20;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+footer{margin-top:96px;border-top:3px double var(--ink);padding:28px 0 60px;color:var(--muted);font-size:15.5px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer p{margin:0;max-width:44em}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
+.reveal.in,html:not(.js) .reveal{opacity:1;transform:none}
+
+@media (max-width:920px){
+  .lede,.pressbox{grid-template-columns:1fr}.grid,.steps{grid-template-columns:1fr 1fr}
+  .crop{display:none}.proof{box-shadow:6px 6px 0 var(--pink),-6px -6px 0 var(--teal)}
+}
+@media (max-width:620px){
+  .grid,.steps{grid-template-columns:1fr}
+  .proof{padding:8px;margin-top:40px}
+  .tbl .use{display:none}.hex{font-size:13px}.sw{width:46px}.sw i{width:34px}
+  .top{flex-direction:column;align-items:flex-start;gap:6px}
+  nav a:nth-child(1),nav a:nth-child(2),nav a:nth-child(4){display:none}
+  section{padding-top:64px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top" aria-label="Misprint home"><span class="dot2" aria-hidden="true"><i></i><i></i></span>MISPRINT</a>
+    <nav aria-label="Primary"><a href="#press">The press</a><a href="#moves">What moves</a><a href="#watch">Watch</a><a href="#palette">Palette</a><a href="#install">Install</a><a href="__REPO__">GitHub</a></nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <p class="eyebrow mono">Specimen Nº 1 &nbsp;·&nbsp; A theme for T3 Code</p>
+      <div class="wm" role="img" aria-label="Misprint"><span class="slip p" aria-hidden="true">Misprint</span><span class="slip t" aria-hidden="true">Misprint</span></div>
+      <div class="lede">
+        <h1>Your agent runs the press.<br>The inks <em>slip</em> while it works.</h1>
+        <div>
+          <p>A two-ink theme for T3 Code: fluoro pink and teal on cream stock. While a turn runs the plates drift out of register and clack between offsets. When it stops they snap back into place, and the overlap goes deep indigo.</p>
+          <div class="ctas"><a class="btn primary" href="#install">Install Misprint &darr;</a><a class="btn" href="#watch">Watch the demo &#9654;</a></div>
+        </div>
+      </div>
+
+      <div class="proof reveal">
+        <i class="crop c1"></i><i class="crop c2"></i><i class="crop c3"></i><i class="crop c4"></i>
+        <video id="hero" muted loop playsinline preload="auto" poster="assets/hero.jpg" aria-label="T3 Code wearing Misprint mid-turn: pink and teal plates slip out of register in the margins while the agent works"><source src="assets/hero.mp4" type="video/mp4"></video>
+        <div class="cap mono"><span><b>Live turn.</b> Plates in the margins, dashed rule in the header, marching rules on busy threads</span><span>Plate 1 pink &nbsp;·&nbsp; Plate 2 teal</span></div>
+      </div>
+    </div>
+
+    <section id="press">
+      <h2><span>Run</span> <span>the press</span></h2>
+      <p class="sub">This is the actual mechanism, on the actual art. Start a turn and the two plates slip; finish it and they snap home. The wordmark and the dashed rules on this page follow along.</p>
+      <div class="pressbox reveal">
+        <div class="stage" aria-hidden="true"><div class="pl a1 slip p"></div><div class="pl a2 slip t"></div><div class="pl b1 slip p"></div><div class="pl b2 slip t"></div></div>
+        <div class="ctl">
+          <div class="state"><span class="lamp"></span><span id="state">At rest · registered</span></div>
+          <button class="btn primary" id="toggle" type="button" aria-pressed="false">Start a turn</button>
+          <p>Idle is still: both inks sit exactly on top of each other. Working is a press that never quite locks. On completion the transition overshoots, like a registration pin seating.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="moves">
+      <h2><span>What</span> <span>moves</span></h2>
+      <p class="sub">Every animation is tied to app state. If nothing is running, nothing moves.</p>
+      <div class="grid">
+        <div class="card reveal"><div class="mini m3"></div><div class="n">01 · WORKING</div><h3>Gutter plates</h3><p>On wide windows the margins hold a halftone test print. Each ink is its own layer; during a turn they clack out of register, then settle.</p></div>
+        <div class="card reveal"><div class="mini"></div><div class="n">02 · WORKING</div><h3>Header rule</h3><p>The dashed rule under the header is printed in both inks. They drift apart while the agent runs and overprint dark when it stops.</p></div>
+        <div class="card reveal"><div class="mini"></div><div class="n">03 · BACKGROUND</div><h3>Busy threads</h3><p>Any thread with an agent on it gets two dashed rules marching in opposite directions. Same under the live &ldquo;Working&hellip;&rdquo; row.</p></div>
+        <div class="card reveal"><div class="mini m2"></div><div class="n">04 · FOCUS</div><h3>Composer</h3><p>At rest the box has a pink offset plate. Focus it and the teal plate prints on the other corner.</p></div>
+        <div class="card reveal"><div class="mini m2"></div><div class="n">05 · HOVER</div><h3>Thread rows</h3><p>Pink grows from the left, teal from the right, and the overlap goes dark where they meet.</p></div>
+        <div class="card reveal"><div class="mini m3"></div><div class="n">06 · NARROW</div><h3>Docked sheet</h3><p>No gutter at your window size? A small proof sheet docks above the sidebar footer instead, with the same slip.</p></div>
+      </div>
+      <p class="hint">Reduced motion freezes everything to the registered still. Only transforms, opacity, background-position and registered custom properties are animated.</p>
+    </section>
+
+    <section id="watch">
+      <h2><span>Watch</span> <span>the demo</span></h2>
+      <p class="sub">About a minute: at rest, compose, a turn starts, background threads, turn done, hover, code and the narrow fallback.</p>
+      <div class="vidwrap reveal"><video id="demo" controls preload="none" playsinline poster="assets/demo.jpg" aria-label="Captioned walkthrough of the Misprint theme"><source src="assets/demo.mp4" type="video/mp4"></video></div>
+    </section>
+
+    <section id="palette">
+      <h2><span>The</span> <span>inks</span></h2>
+      <p class="sub">Two inks, one stock. Text is the overprint colour pushed toward black. Click a row to copy its hex.</p>
+      <table class="tbl reveal" id="pal" aria-label="Palette">__PALETTE__</table>
+      <p class="hint">All colours come straight from <code>misprint.json</code>. Pink and teal also drive the art, rules and shadows in the CSS.</p>
+    </section>
+
+    <section id="install">
+      <h2><span>Pull</span> <span>a print</span></h2>
+      <p class="sub">Add it in Settings &rsaquo; Appearance, or from the terminal.</p>
+      <div class="steps">
+        <div class="card reveal"><div class="n">A · COPY</div><h3>Paste it in</h3><p>Copy the JSON, then in T3 Code open <b>Settings &rsaquo; Appearance &rsaquo; Add theme</b> and paste.</p><div class="row"><button class="btn primary" id="copy" type="button">Copy theme JSON</button></div></div>
+        <div class="card reveal"><div class="n">B · DOWNLOAD</div><h3>Pick the file</h3><p>Download <code>misprint.json</code> and choose it in the same Add theme dialog.</p><div class="row"><a class="btn" href="misprint.json" download>Download</a></div></div>
+        <div class="card reveal"><div class="n">C · CLI</div><h3>Terminal</h3><p>Fetch it and set it as the environment theme.</p><pre id="cli">curl -fsSL -o misprint.json __SITE__misprint.json
+~/.t3/bin/t3 theme set misprint.json</pre><div class="row"><button class="btn" id="copycli" type="button">Copy commands</button></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Misprint is an independent, community theme for T3 Code. It is not affiliated with, endorsed by or sponsored by T3. MIT licensed. Tested against T3 Code 0.1.11 nightly.</p>
+    <p><a href="__REPO__">Source on GitHub</a> &nbsp;·&nbsp; <a href="__SITE__misprint.json">misprint.json</a></p>
+  </footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const toast = $('#toast'); let tt;
+  const say = m => { toast.textContent = m; toast.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('on'), 2000); };
+  const copy = async (text, ok) => {
+    try { await navigator.clipboard.writeText(text); say(ok); }
+    catch (e) { const t = document.createElement('textarea'); t.value = text; t.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); say(ok); } catch (_) { say('Copy failed: select it by hand'); } t.remove(); }
+  };
+  // hero loop plays only when visible, never under reduced motion
+  const hero = $('#hero');
+  if (reduce) hero.poster = 'assets/screenshot.jpg';
+  else new IntersectionObserver(([e]) => { if (e.isIntersecting) hero.play().catch(() => {}); else hero.pause(); }, { threshold: .15 }).observe(hero);
+  // the press toy: the whole page slips while a "turn" runs
+  const tg = $('#toggle'), st = $('#state');
+  const setPress = on => { document.body.classList.toggle('press', on); tg.setAttribute('aria-pressed', on); tg.textContent = on ? 'Finish the turn' : 'Start a turn'; st.textContent = on ? 'Working · out of register' : 'At rest · registered'; };
+  // the page is "working" while the hero loop plays; the button overrides once clicked
+  let manual = false;
+  hero.addEventListener('play', () => { if (!reduce && !manual) setPress(true); });
+  hero.addEventListener('pause', () => { if (!manual) setPress(false); });
+  tg.addEventListener('click', () => { manual = true; setPress(!document.body.classList.contains('press')); });
+  // palette
+  $$('#pal tr').forEach(r => { const go = () => copy(r.dataset.hex, 'Copied ' + r.dataset.hex); r.addEventListener('click', go); r.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } }); });
+  // install
+  $('#copy').addEventListener('click', async () => {
+    try { const r = await fetch('misprint.json', { cache: 'no-cache' }); if (!r.ok) throw 0; await copy(await r.text(), 'Theme JSON copied: paste it into Add theme'); }
+    catch (e) { say('Could not fetch misprint.json'); }
+  });
+  $('#copycli').addEventListener('click', () => copy($('#cli').textContent, 'Commands copied'));
+  // reveals
+  if ('IntersectionObserver' in window && !reduce) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -6% 0px' });
+    $$('.reveal').forEach(el => io.observe(el));
+  } else $$('.reveal').forEach(el => el.classList.add('in'));
+})();
+</script>
+</body>
+</html>
